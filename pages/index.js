@@ -1,6 +1,16 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+export async function getStaticProps() {
+  const res = await fetch('https://localhost:1337/articles')
+  const posts = await res.json()
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+
 export default function Home() {
   return (
     <div className={styles.container}>
